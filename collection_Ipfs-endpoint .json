@@ -1,0 +1,47 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "Ipfs-endpoint ",
+    "dateExported": "2023-12-27T04:58:55.134Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "e6557ece-cd43-414b-9458-ad61fb28b05c",
+            "colId": "d02c3795-4094-422c-98fb-8c3bbf2e1bdb",
+            "containerId": "",
+            "name": "http://localhost:8000/add-json",
+            "url": "http://localhost:8000/add-json",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2023-12-27T04:57:23.148Z",
+            "modified": "2023-12-27T04:57:23.148Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"objectId\":\"json02\",\n  \"data\": {\n    \"key\":\"value2\",\n        \"obj\": {\n            \"key1.1\":\"value1.1\",\n            \"key1.2\":\"value1.2\"\n          },\n        \"obj2\":{\n            \"key2.1\":\"value2.1\",\n            \"key2.2\":\"value2.2\"\n          }\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "54ebe728-9838-4c29-a329-7d5b21f161b9",
+            "colId": "d02c3795-4094-422c-98fb-8c3bbf2e1bdb",
+            "containerId": "",
+            "name": "http://localhost:8000/read-json",
+            "url": "http://localhost:8000/read-json",
+            "method": "GET",
+            "sortNum": 30000,
+            "created": "2023-12-27T04:57:49.660Z",
+            "modified": "2023-12-27T04:57:49.660Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"cid\":\"Qme9jWMfiVy86kMtj7vZPSMbi2F5553zXvcdhvqhNBnZvt\"\n}",
+                "form": []
+            },
+            "tests": []
+        }
+    ]
+}
