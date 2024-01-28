@@ -62,7 +62,7 @@ app.post("/add-json", async (req, res) => {
 });
 
 //Read json object from IPFS
-app.get("/read-json", (req, res) => {
+app.post("/read-json", (req, res) => {
   const cid = req.body.cid;
   console.log(cid);
 
