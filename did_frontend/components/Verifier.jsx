@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import "./Verifier.css"; // Import your CSS file
 
 const Verifier = () => {
   const [id, setId] = useState("");
   const [response, setResponse] = useState("");
   const [isValid, setIsValid] = useState(Boolean);
+
   const handleChange = (e) => {
     setId(e.target.value);
   };
@@ -24,7 +26,8 @@ const Verifier = () => {
         body: JSON.stringify(requestData),
       });
       const data = await response.json();
-      setResponse(JSON.stringify(data, null, 2));
+      setResponse(data);
+      console.log(response);
 
       if (parseInt(data.credentials.age) > 18) {
         setIsValid(true);
@@ -38,20 +41,27 @@ const Verifier = () => {
   };
 
   return (
-    <div>
+      <>
+      <div> 
+        <h1>Verifier Webpage </h1>
+      </div>
+    <div className="verifier-container"> {/* Add a class for the main container */}
+      
       <form onSubmit={handleSubmit}>
-        <label>
-          ID:
-          <input type="text" value={id} onChange={handleChange} />
-        </label>
+        <label style={{color:"black"}}>
+          Enter user DID 
+          </label>
+          <input type="text" value={id} onChange={handleChange} required />
+       
         <br />
         <button type="submit">Submit</button>
       </form>
-      <div>
-        <h2>Response:</h2>
-        <pre>{isValid ? `age is valid` : `Invalid age`}</pre>
+      <div className="response-container"> {/* Add a class for the response container */}
+        <h2>User status:</h2>
+        <pre>{isValid ? `Yes, this user is 18+` : `User is under 18!!`}</pre>
       </div>
     </div>
+    </>
   );
 };
 

@@ -11,6 +11,7 @@ const Issuer = () => {
   });
 
   const [response, setResponse] = useState();
+  const [isSubmit, setIsSubmit] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -22,6 +23,7 @@ const Issuer = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsSubmit(true);
 
     const objectId = `json${uuidv4().slice(-2)}`;
     const requestData = {
@@ -54,6 +56,8 @@ const Issuer = () => {
   };
 
   return (
+    <>
+    <h1>Issuer Webpage</h1>
     <div className="container">
     <form onSubmit={handleSubmit} className="form">
       <label className="label">
@@ -64,6 +68,7 @@ const Issuer = () => {
           value={formData.name}
           onChange={handleChange}
           className="input"
+        required
         />
       </label>
       <br />
@@ -75,6 +80,7 @@ const Issuer = () => {
           value={formData.address}
           onChange={handleChange}
           className="input"
+          required
         />
       </label>
       <br />
@@ -86,6 +92,7 @@ const Issuer = () => {
           value={formData.age}
           onChange={handleChange}
           className="input"
+          required
         />
       </label>
       <br />
@@ -97,6 +104,7 @@ const Issuer = () => {
           value={formData.passportId}
           onChange={handleChange}
           className="input"
+          required
         />
       </label>
       <br />
@@ -104,14 +112,17 @@ const Issuer = () => {
         Submit
       </button>
     </form>
+    { isSubmit ?
     <div className="response-container">
       <h2 className="response-heading">Credential Issued Success:</h2>
       <pre className="response"> 
         <div><label>DID</label>: did:passport:{response != null ? response.IpfsHash :null } </div>
         <div><label>Issue Timestamp</label>: {response != null ? response.Timestamp : null } </div>
       </pre>
-    </div>
+    </div> : null
+    }
   </div>
+  </>
   );
 };
 
