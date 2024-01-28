@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import './ContractInteractionComponent.css';
 
 const Issuer = () => {
   const [formData, setFormData] = useState({
@@ -8,7 +9,8 @@ const Issuer = () => {
     age: "",
     passportId: "",
   });
-  const [response, setResponse] = useState("");
+
+  const [response, setResponse] = useState();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -44,7 +46,7 @@ const Issuer = () => {
         body: JSON.stringify(requestData),
       });
       const data = await response.json();
-      setResponse(JSON.stringify(data, null, 2));
+      setResponse(data);
     } catch (error) {
       console.error("Error submitting form:", error);
       setResponse("Error submitting form");
@@ -52,55 +54,64 @@ const Issuer = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Name:
-          <input
-            type="text"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-          />
-        </label>
-        <br />
-        <label>
-          Address:
-          <input
-            type="text"
-            name="address"
-            value={formData.address}
-            onChange={handleChange}
-          />
-        </label>
-        <br />
-        <label>
-          Age:
-          <input
-            type="text"
-            name="age"
-            value={formData.age}
-            onChange={handleChange}
-          />
-        </label>
-        <br />
-        <label>
-          Id:
-          <input
-            type="text"
-            name="passportId"
-            value={formData.passportId}
-            onChange={handleChange}
-          />{" "}
-        </label>
-        <br />
-        <button type="submit">Submit</button>
-      </form>
-      <div>
-        <h2>Response:</h2>
-        <pre>{response}</pre>
-      </div>
+    <div className="container">
+    <form onSubmit={handleSubmit} className="form">
+      <label className="label">
+        Name:
+        <input
+          type="text"
+          name="name"
+          value={formData.name}
+          onChange={handleChange}
+          className="input"
+        />
+      </label>
+      <br />
+      <label className="label">
+        Address:
+        <input
+          type="text"
+          name="address"
+          value={formData.address}
+          onChange={handleChange}
+          className="input"
+        />
+      </label>
+      <br />
+      <label className="label">
+        Age:
+        <input
+          type="text"
+          name="age"
+          value={formData.age}
+          onChange={handleChange}
+          className="input"
+        />
+      </label>
+      <br />
+      <label className="label">
+        Id:
+        <input
+          type="text"
+          name="passportId"
+          value={formData.passportId}
+          onChange={handleChange}
+          className="input"
+        />
+      </label>
+      <br />
+      <button type="submit" className="submit-btn">
+        Submit
+      </button>
+    </form>
+    <div className="response-container">
+      <h2 className="response-heading">Credential Issued Success:</h2>
+      <pre className="response"> 
+        <div><label>DID</label>: did:passport:{response != null ? response.IpfsHash :null } </div>
+        <div><label>Issue Timestamp</label>: {response != null ? response.Timestamp : null } </div>
+      </pre>
     </div>
+  </div>
   );
 };
 
