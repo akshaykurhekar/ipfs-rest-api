@@ -1,46 +1,79 @@
 {
     "client": "Thunder Client",
     "collectionName": "Ipfs-endpoint ",
-    "dateExported": "2023-12-27T04:58:55.134Z",
+    "dateExported": "2024-02-25T10:11:55.125Z",
     "version": "1.1",
     "folders": [],
     "requests": [
         {
-            "_id": "e6557ece-cd43-414b-9458-ad61fb28b05c",
-            "colId": "d02c3795-4094-422c-98fb-8c3bbf2e1bdb",
+            "_id": "33ee209b-ceac-43ed-b349-4c14c5c2eabe",
+            "colId": "aa75bed1-a3d6-4308-9c00-39c5bb8edcea",
             "containerId": "",
             "name": "http://localhost:8000/add-json",
-            "url": "http://localhost:8000/add-json",
+            "url": "http://localhost:8000/api/add-json",
             "method": "POST",
             "sortNum": 20000,
-            "created": "2023-12-27T04:57:23.148Z",
-            "modified": "2023-12-27T04:57:23.148Z",
+            "created": "2024-02-20T14:20:13.592Z",
+            "modified": "2024-02-24T18:42:15.677Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"objectId\":\"json02\",\n  \"data\": {\n    \"key\":\"value2\",\n        \"obj\": {\n            \"key1.1\":\"value1.1\",\n            \"key1.2\":\"value1.2\"\n          },\n        \"obj2\":{\n            \"key2.1\":\"value2.1\",\n            \"key2.2\":\"value2.2\"\n          }\n  }\n}",
+                "raw": "{\n  \"objectId\" : \"12345\",\n  \"userData\" : {\n    \"key\" : \"value1\",\n    \"key1\" : \"value2\"\n  }\n}",
                 "form": []
             },
             "tests": []
         },
         {
-            "_id": "54ebe728-9838-4c29-a329-7d5b21f161b9",
-            "colId": "d02c3795-4094-422c-98fb-8c3bbf2e1bdb",
+            "_id": "4df1a147-d977-44f9-abfd-cfb9ea317d83",
+            "colId": "aa75bed1-a3d6-4308-9c00-39c5bb8edcea",
             "containerId": "",
             "name": "http://localhost:8000/read-json",
-            "url": "http://localhost:8000/read-json",
-            "method": "GET",
+            "url": "http://localhost:8000/api/read-json",
+            "method": "POST",
             "sortNum": 30000,
-            "created": "2023-12-27T04:57:49.660Z",
-            "modified": "2023-12-27T04:57:49.660Z",
+            "created": "2024-02-20T14:20:13.594Z",
+            "modified": "2024-02-24T18:42:26.556Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"cid\":\"Qme9jWMfiVy86kMtj7vZPSMbi2F5553zXvcdhvqhNBnZvt\"\n}",
+                "raw": "{\n  \"cid\":\"QmTbDcWgQJqGjjWkNX8Ao7YkzYzvR3FKZihwonHRwHAJaP\"\n}",
                 "form": []
             },
+            "tests": []
+        },
+        {
+            "_id": "e19f4164-91f2-4b00-a242-6ca8356dc320",
+            "colId": "aa75bed1-a3d6-4308-9c00-39c5bb8edcea",
+            "containerId": "",
+            "name": "add holders ",
+            "url": "http://localhost:8000/holdercollection",
+            "method": "POST",
+            "sortNum": 40000,
+            "created": "2024-02-22T16:33:04.207Z",
+            "modified": "2024-02-22T16:49:08.379Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"walletAddress\" : \"sample1\",\n  \"publicKey\" : \"sample1\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "228f3ba2-1a43-40ec-8260-71e7a6c43c96",
+            "colId": "aa75bed1-a3d6-4308-9c00-39c5bb8edcea",
+            "containerId": "",
+            "name": "get holder",
+            "url": "http://localhost:8000/holdercollection/65d4d6bbf9ded408d3818106",
+            "method": "GET",
+            "sortNum": 50000,
+            "created": "2024-02-22T16:34:54.052Z",
+            "modified": "2024-02-22T16:44:21.609Z",
+            "headers": [],
+            "params": [],
             "tests": []
         }
     ]

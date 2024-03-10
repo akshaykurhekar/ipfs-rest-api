@@ -10,10 +10,17 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.0",
+    "@metamask/detect-provider": "^2.0.0",
+    "@mui/material": "^5.15.11",
     "axios": "^1.6.7",
+    "ethers": "^6.11.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "uuidv4": "^6.2.13"
+    "uuid": "^9.0.1",
+    "uuidv4": "^6.2.13",
+    "web3": "^4.5.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.43",

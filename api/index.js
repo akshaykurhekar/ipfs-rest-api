@@ -1,27 +1,24 @@
-const axios = require("axios");
-const FormData = require("form-data");
-const fs = require("fs");
-const dotenv = require("dotenv");
-const cors = require("cors");
-dotenv.config();
-const pinataSDK = require("@pinata/sdk");
-// Use the api keys by specifying your api key and api secret
-const pinata = new pinataSDK({
-  pinataApiKey: process.env.API_KEY,
-  pinataSecretApiKey: process.env.API_SECRET,
-});
+import axios from "axios";
+import cors from "cors";
+import pinataSDK from "@pinata/sdk";
+import express from "express";
+import router from "./routes/holdercollection.js";
 
-// import express (after npm install express)
-const express = require("express");
-
-// create new express app and save it as "app"
 const app = express();
 
 app.use(express.json()); // for parsing application/json
 app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 app.use(cors());
+app.use("/holdercollection", router);
+
 // server configuration
 const PORT = 8000;
+
+// Use the api keys by specifying your api key and api secret
+const pinata = new pinataSDK({
+  pinataApiKey: process.env.API_KEY,
+  pinataSecretApiKey: process.env.API_SECRET,
+});
 
 // create a route for the app
 app.get("/", (req, res) => {
@@ -29,8 +26,8 @@ app.get("/", (req, res) => {
 });
 
 // Add json object on IPFS
-app.post("/add-json", async (req, res) => {
-  const jsonObject = req.body.data;
+app.post("/api/add-json", async (req, res) => {
+  const jsonObject = req.body.userData;
   const objectId = req.body.objectId;
   console.log(jsonObject);
 
@@ -62,7 +59,7 @@ app.post("/add-json", async (req, res) => {
 });
 
 //Read json object from IPFS
-app.post("/read-json", (req, res) => {
+app.post("/api/read-json", (req, res) => {
   const cid = req.body.cid;
   console.log(cid);
 
