@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./Verifier.css"; // Import your CSS file
+import "../../src/styles/Verifier.module.css"; // Import your CSS file
 
 const Verifier = () => {
   const [id, setId] = useState("");
@@ -41,26 +41,27 @@ const Verifier = () => {
   };
 
   return (
-      <>
-      <div> 
+    <>
+      <div>
         <h1>Verifier Webpage </h1>
       </div>
-    <div className="verifier-container"> {/* Add a class for the main container */}
-      
-      <form onSubmit={handleSubmit}>
-        <label style={{color:"black"}}>
-          Enter user DID 
-          </label>
+      <div className="verifier-container">
+        {" "}
+        {/* Add a class for the main container */}
+        <form onSubmit={handleSubmit}>
+          <label style={{ color: "black" }}>Enter user DID</label>
           <input type="text" value={id} onChange={handleChange} required />
-       
-        <br />
-        <button type="submit">Submit</button>
-      </form>
-      <div className="response-container"> {/* Add a class for the response container */}
-        <h2>User status:</h2>
-        <pre>{isValid ? `Yes, this user is 18+` : `User is under 18!!`}</pre>
+
+          <br />
+          <button type="submit">Submit</button>
+        </form>
+        <div className="response-container">
+          {" "}
+          {/* Add a class for the response container */}
+          <h2>User status:</h2>
+          <pre>{isValid ? `Yes, this user is 18+` : `User is under 18!!`}</pre>
+        </div>
       </div>
-    </div>
     </>
   );
 };
