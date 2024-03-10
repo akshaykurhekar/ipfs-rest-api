@@ -8,6 +8,7 @@ function App() {
   return (
     <Router>
       <Routes>
+      <Route exact path="/" element={"Welcome to SSI Project"} />
         <Route exact path="issuer" element={<Issuer />} />
         <Route exact path="verifier" element={<Verifier />} />
         <Route exact path="holder" element={<Holder />} />

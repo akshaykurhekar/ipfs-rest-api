@@ -97,7 +97,7 @@ const Issuer = () => {
       </label>
       <br />
       <label className="label">
-        Id:
+        Passport Id:
         <input
           type="text"
           name="passportId"
