@@ -80,9 +80,6 @@ const Holder = () => {
 
   const [cid, setCid] = useState("QmbLztjxmKSjGrMGdXK1rxSt4g3wiwcVFRfj3eQnPHDER3");
 
-  // let credentialComponent=null;
-  const [credentialComponent, setCredentialComponent] = useState(null);
-
   const fetchCredential = async () => {
 
     //get list of cid from DB 
@@ -198,8 +195,6 @@ const Holder = () => {
           </div>
           <p>Wallet Balance: {wallet.balance} ETH</p>
           {componentToRender}
-          {/* { credentials !== null ? credentialComponent :null} */}
-
         </>
       )}
     </div>
