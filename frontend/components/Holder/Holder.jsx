@@ -35,7 +35,7 @@ const Holder = () => {
 
   const createRequest = () => {
     return {
-      walletAddress: holder.walletAddress,
+      walletAddress: localStorage.getItem("walletAddress"),
       isRegistered: true,
       isIssued: false,
     };
