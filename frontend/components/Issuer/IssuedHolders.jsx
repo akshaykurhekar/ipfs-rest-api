@@ -7,10 +7,6 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
-import { Button } from "@mui/material";
-import axios from "axios";
-import { ethers } from "ethers";
-import ModalDialog from "./ModalDialog";
 
 const baseUrl = "http://localhost:8000/";
 

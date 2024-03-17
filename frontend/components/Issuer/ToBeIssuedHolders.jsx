@@ -2,11 +2,9 @@ import { useState, useEffect } from "react";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
-import { Button } from "@mui/material";
-import axios from "axios";
-import { ethers } from "ethers";
-import ModalDialog from "./ModalDialog";
+import Button from "@mui/material/Button";
 import Form from "./Form";
+import { Dialog } from "@mui/material";
 
 const baseUrl = "http://localhost:8000/";
 
@@ -24,15 +22,19 @@ const columns = [
 export default function ToBeIssuedHolders({
   unissuedHolders,
   setUnissuedHolders,
-  handleIssue,
 }) {
   const [open, setOpen] = useState(false);
-  const handleOpen = (row) => {
+  const [current, setCurrent] = useState("");
+  const handleIssue = async () => {};
+  const handleOpen = async (value) => {
+    setCurrent(value);
     setOpen(true);
-    console.log(row);
   };
   const handleClose = () => {
     setOpen(false);
+  };
+  const changeHolder = (value) => {
+    setCurrent(value);
   };
   return (
     <List
@@ -42,25 +44,21 @@ export default function ToBeIssuedHolders({
         bgcolor: "background.paper",
       }}
     >
-      {unissuedHolders.map((value) => (
-        <ListItem
-          key={value}
-          sx={{ paddingRight: 5, marginRight: 5 }}
-          secondaryAction={
-            <>
-              <Button onClick={handleOpen}>Issue</Button>
-              <ModalDialog
-                open={open}
+      {unissuedHolders.map((value) => {
+        return (
+          <ListItem key={value} sx={{ paddingRight: 5, marginRight: 5 }}>
+            <ListItemText primary={`${value}`} sx={{ color: "black" }} />
+            <Button onClick={() => handleOpen(value)}>issue</Button>
+            <Dialog open={open} onClose={handleClose}>
+              <Form
                 handleClose={handleClose}
-                walletAddress={value}
                 handleIssue={handleIssue}
-              ></ModalDialog>
-            </>
-          }
-        >
-          <ListItemText primary={`${value}`} sx={{ color: "black" }} />
-        </ListItem>
-      ))}
+                walletAddress={current}
+              ></Form>
+            </Dialog>
+          </ListItem>
+        );
+      })}
     </List>
   );
 }

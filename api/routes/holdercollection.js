@@ -58,16 +58,17 @@ router.post("/", async (req, res) => {
   }
 });
 
-// This section will help you update a record by id.
+// This section will help you update a record by wallet address.
 router.patch("/:walletAddress", async (req, res) => {
   try {
     const query = { walletAddress: req.params.walletAddress };
+    console.log(query);
     const updates = {
       $set: {
         name: req.body.name,
         age: req.body.age,
         passportID: req.body.passportID,
-        walletAddress: req.body.walletAddress,
+        isIssued: req.body.isIssued,
       },
     };
 

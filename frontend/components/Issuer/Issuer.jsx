@@ -13,22 +13,9 @@ const Issuer = () => {
   const [issuedHolders, setIssuedHolders] = useState([]);
   const [unissuedHolders, setUnissuedHolders] = useState([]);
   const [contract, setContract] = useState(null);
-  const {
-    wallet,
-    hasProvider,
-    isConnecting,
-    connectMetamask,
-    signer,
-    provider,
-  } = useMetaMask();
+  const { wallet, hasProvider, isConnecting, connectMetamask } = useMetaMask();
 
   useEffect(() => {
-    let tempContract = new ethers.Contract(
-      DIDIssuerAddress,
-      DIDIssuerABI,
-      signer
-    );
-    setContract(tempContract);
     const getAddress = (list) => {
       let arr = [];
       list.map((item) => {
@@ -57,17 +44,6 @@ const Issuer = () => {
         console.log("Could not get holder details", error);
       });
   }, []);
-
-  const handleOpen = () => {
-    setOpen(true);
-  };
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  const handleIssue = (address) => {
-    console.log(address);
-  };
   return (
     <>
       <h1>Issuer Webpage</h1>
@@ -104,7 +80,6 @@ const Issuer = () => {
         setIssuedHolders={setIssuedHolders}
         unissuedHolders={unissuedHolders}
         setUnissuedHolders={setUnissuedHolders}
-        handleIssue={handleIssue}
       ></VerticalTabs>
     </>
   );

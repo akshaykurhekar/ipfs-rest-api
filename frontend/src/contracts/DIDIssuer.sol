@@ -18,11 +18,12 @@ contract DIDIssuer is Ownable{
     }
     
     
-    function mint(address _to, string calldata URI) external onlyOwner{
+    function mint(address _to, string calldata URI)  external onlyOwner returns(string memory){
         require(bytes(record[_to]).length == 0, "Passport Already exists for the given address");
         string memory did = string(abi.encodePacked("did", ":", issuerSymbol, ":", URI));
         record[_to] = did;
         emit Mint(_to);
+        return did;
 
     }
 

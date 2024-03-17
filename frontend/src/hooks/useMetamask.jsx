@@ -28,12 +28,7 @@ export const MetamaskContextProvider = ({ children }) => {
     const balance = (parseInt(rawBalance) / 1000000000000000000).toFixed(2);
     return balance;
   };
-  const updateEthers = () => {
-    let tempProvider = new ethers.providers.Web3Provider(window.ethereum);
-    setProvider(tempProvider);
-    let tempSigner = tempProvider.getSigner();
-    setSigner(tempSigner);
-  };
+
   const _updateWallet = useCallback(async (providedAccounts) => {
     const accounts =
       providedAccounts ||
@@ -49,7 +44,6 @@ export const MetamaskContextProvider = ({ children }) => {
       })
     );
     setWallet({ accounts, balance });
-    updateEthers();
   }, []);
 
   const updateWalletAndAccounts = useCallback(

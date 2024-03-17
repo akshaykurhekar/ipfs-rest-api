@@ -35,8 +35,7 @@ app.post("/api/add-json", async (req, res) => {
     pinataMetadata: {
       name: objectId,
       keyvalues: {
-        customKey: "customValue",
-        customKey2: "customValue2",
+        name: "didpassport",
       },
     },
     pinataOptions: {
