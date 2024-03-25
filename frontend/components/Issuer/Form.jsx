@@ -38,6 +38,7 @@ const Form = (props) => {
   const callMint = async (address, cid) => {
     const tx = await contractWithSigner.mint(address, cid);
     await tx.wait();
+    console.log(`https://etherscan.io/tx/${tx.hash}`);
     const did = await contractWithSigner.record(address);
 
     return did;
@@ -48,12 +49,13 @@ const Form = (props) => {
       userData: {
         ...formData,
         walletAddress: props.walletAddress,
+        passportId: passport,
       },
     };
     return req;
   };
   const updateHolder = async (address, req) => {
-    let resp = await axios.patch(`${baseUrl}/holdercollection/${address}`, req);
+    let resp = await axios.patch(`${baseUrl}holdercollection/${address}`, req);
     return resp;
   };
   const handleSubmit = async (e) => {

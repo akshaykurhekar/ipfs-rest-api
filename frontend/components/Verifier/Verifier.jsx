@@ -1,66 +1,80 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "../../src/styles/Verifier.module.css"; // Import your CSS file
+import { Button, styled, TextField } from "@mui/material";
+import axios from "axios";
+const StyledTextField = styled(TextField)(({ theme }) => ({
+  margin: "1rem",
+  width: "300px",
+}));
 
 const Verifier = () => {
-  const [id, setId] = useState("");
-  const [response, setResponse] = useState("");
+  const [did, setDid] = useState("");
   const [isValid, setIsValid] = useState(Boolean);
-
+  const [display, setDisplay] = useState(false);
   const handleChange = (e) => {
-    setId(e.target.value);
+    setDid(e.target.value);
   };
-
+  useEffect(() => {
+    document.title = "Verifier";
+  }, []);
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const requestData = {
-      cid: id,
-    };
-
-    try {
-      const response = await fetch("http://localhost:8000/read-json", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(requestData),
-      });
-      const data = await response.json();
-      setResponse(data);
-      console.log(response);
-
-      if (parseInt(data.credentials.age) > 18) {
-        setIsValid(true);
-      } else {
-        setIsValid(false);
-      }
-    } catch (error) {
-      console.error("Error fetching data:", error);
-      setResponse("Error fetching data");
+    const response = await axios.post("http://localhost:8000/verify", {
+      did: did,
+    });
+    if (
+      response.data.output == '"0x0000000000000001"' &&
+      response.data.isVerified
+    ) {
+      setIsValid(true);
+      setDisplay(true);
+    } else {
+      setIsValid(false);
+      setDisplay(true);
     }
   };
 
   return (
     <>
+      <title> Verifier </title>
       <div>
         <h1>Verifier Webpage </h1>
       </div>
       <div className="verifier-container">
         {" "}
         {/* Add a class for the main container */}
-        <form onSubmit={handleSubmit}>
-          <label style={{ color: "black" }}>Enter user DID</label>
-          <input type="text" value={id} onChange={handleChange} required />
-
-          <br />
-          <button type="submit">Submit</button>
+        <form
+          onSubmit={handleSubmit}
+          style={{ backgroundColor: "white", borderRadius: "10px" }}
+        >
+          <StyledTextField
+            label="DID"
+            name="DId"
+            variant="filled"
+            required
+            value={did}
+            onChange={handleChange}
+          />
+          <Button
+            variant="contained"
+            color="primary"
+            type="submit"
+            sx={{ margin: "2rem" }}
+          >
+            Validate DID
+          </Button>
         </form>
-        <div className="response-container">
-          {" "}
-          {/* Add a class for the response container */}
-          <h2>User status:</h2>
-          <pre>{isValid ? `Yes, this user is 18+` : `User is under 18!!`}</pre>
-        </div>
+        {display && (
+          <div className="response-container">
+            {" "}
+            {/* Add a class for the response container */}
+            <h2>User status:</h2>
+            <pre>
+              {isValid ? `Yes, this user is 18+` : `User is under 18!!`}
+            </pre>
+          </div>
+        )}
       </div>
     </>
   );

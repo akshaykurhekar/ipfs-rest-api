@@ -66,9 +66,10 @@ router.patch("/:walletAddress", async (req, res) => {
     const updates = {
       $set: {
         name: req.body.name,
-        age: req.body.age,
-        passportID: req.body.passportID,
+        birthyear: req.body.birthyear,
+        passportId: req.body.passportId,
         isIssued: req.body.isIssued,
+        did: req.body.did,
       },
     };
 

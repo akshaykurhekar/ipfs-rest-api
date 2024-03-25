@@ -16,6 +16,7 @@ const Issuer = () => {
   const { wallet, hasProvider, isConnecting, connectMetamask } = useMetaMask();
 
   useEffect(() => {
+    document.title = "Issuer";
     const getAddress = (list) => {
       let arr = [];
       list.map((item) => {
@@ -47,34 +48,6 @@ const Issuer = () => {
   return (
     <>
       <h1>Issuer Webpage</h1>
-      <div>
-        {!hasProvider && (
-          <a href="https://metamask.io" target="_blank">
-            Install MetaMask
-          </a>
-        )}
-        {window.ethereum?.isMetaMask && wallet.accounts.length < 1 && (
-          <Button disabled={isConnecting} onClick={connectMetamask}>
-            Connect MetaMask
-          </Button>
-        )}
-        {hasProvider && wallet.accounts.length > 0 && (
-          <>
-            <div>
-              Current Wallet Address :{" "}
-              <a
-                className="text_link tooltip-bottom"
-                href={`https://etherscan.io/address/${wallet.accounts[0]}`}
-                target="_blank"
-                data-tooltip="Open in Block Explorer"
-              >
-                {wallet.accounts[0]}
-              </a>
-            </div>
-            <div>Wallet Balance: {wallet.balance} ETH</div>
-          </>
-        )}
-      </div>
       <VerticalTabs
         issuedHolders={issuedHolders}
         setIssuedHolders={setIssuedHolders}

@@ -11,19 +11,25 @@ import TableRow from "@mui/material/TableRow";
 const baseUrl = "http://localhost:8000/";
 
 const columns = [
-  { id: "name", label: "Name", minWidth: 170 },
-  { id: "walletAddress", label: "Wallet Address", minWidth: 100 },
+  { id: "name", label: "Name" },
+  { id: "walletAddress", label: "Wallet Address" },
   {
-    id: "age",
-    label: "Age",
+    id: "birthyear",
+    label: "Birth Year",
+    align: "right",
+    format: (value) => (value = 2024 - value),
+  },
+  {
+    id: "passportId",
+    label: "Passport ID",
     minWidth: 170,
     align: "right",
     format: (value) => value.toLocaleString("en-US"),
   },
   {
-    id: "passportID",
-    label: "Passport ID",
-    minWidth: 170,
+    id: "did",
+    label: "Decentralised Identifier",
+
     align: "right",
     format: (value) => value.toLocaleString("en-US"),
   },

@@ -3,6 +3,7 @@ import cors from "cors";
 import pinataSDK from "@pinata/sdk";
 import express from "express";
 import router from "./routes/holdercollection.js";
+import verify from "./routes/verify.js";
 
 const app = express();
 
@@ -10,7 +11,7 @@ app.use(express.json()); // for parsing application/json
 app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 app.use(cors());
 app.use("/holdercollection", router);
-
+app.use("/verify", verify);
 
 // server configuration
 const PORT = 8000;
